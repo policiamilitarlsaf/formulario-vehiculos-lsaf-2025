@@ -147,6 +147,73 @@
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby36aYFzeJhltB5gLNFOLsykaFycRoEubO5BZxhkfEukevrdxJB3vXvtVPXobN4V193/exec';
 
+    // ========== PROTECCIÓN TOTAL INMEDIATA ==========
+(function() {
+    // 1. Bloquear clic derecho en todo el documento (captura)
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }, true); // true = fase de captura, se ejecuta antes que otros
+
+    // 2. Bloquear teclas de desarrollador (también en captura)
+    document.addEventListener('keydown', function(e) {
+        // F12
+        if (e.key === 'F12') {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+        // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Chrome/Edge)
+        if ((e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+        // Ctrl+U (ver fuente)
+        if ((e.ctrlKey && e.key === 'u') || (e.metaKey && e.key === 'u')) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+        // Ctrl+Shift+U (algunas herramientas)
+        if (e.ctrlKey && e.shiftKey && e.key === 'U') {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+        // Ctrl+S (guardar)
+        if ((e.ctrlKey && e.key === 's') || (e.metaKey && e.key === 's')) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+        // Ctrl+Shift+K (consola en Firefox)
+        if (e.ctrlKey && e.shiftKey && e.key === 'K') {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    }, true);
+
+    // 3. Anular la consola (para que no se vean errores)
+    const noop = () => {};
+    if (window.console) {
+        console.log = noop;
+        console.info = noop;
+        console.warn = noop;
+        console.error = noop;
+        console.debug = noop;
+    }
+
+    // 4. Limpiar consola cada 2 segundos (opcional)
+    setInterval(() => {
+        if (window.console && console.clear) console.clear();
+    }, 2000);
+})();
+
+// ===== EL RESTO DE TU CÓDIGO (SCRIPT_URL, variables, etc.) =====
+
 let ACTIVE_CODE = null;
 let currentCode = null;
 
