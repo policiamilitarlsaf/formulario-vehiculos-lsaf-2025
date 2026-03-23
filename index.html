@@ -400,6 +400,150 @@ window.onload = function(){
     })();
 </script>
 </body>
+    <script>
+    // ============================================
+    // BLOQUEO COMPLETO DE SEGURIDAD
+    // ============================================
+    
+    // 1. Bloquear clic derecho
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    
+    // 2. Bloquear combinaciones de teclado para desarrolladores
+    document.addEventListener('keydown', function(e) {
+        // Bloquear F12
+        if (e.key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+        // Bloquear Ctrl+Shift+I (abrir inspector)
+        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+            e.preventDefault();
+            return false;
+        }
+        // Bloquear Ctrl+Shift+J (abrir consola)
+        if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
+            e.preventDefault();
+            return false;
+        }
+        // Bloquear Ctrl+Shift+C (inspeccionar elemento)
+        if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
+            e.preventDefault();
+            return false;
+        }
+        // Bloquear Ctrl+U (ver código fuente)
+        if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+            e.preventDefault();
+            return false;
+        }
+        // Bloquear Ctrl+S (guardar página)
+        if (e.ctrlKey && (e.key === 'S' || e.key === 's')) {
+            e.preventDefault();
+            return false;
+        }
+        // Bloquear Ctrl+P (imprimir)
+        if (e.ctrlKey && (e.key === 'P' || e.key === 'p')) {
+            e.preventDefault();
+            return false;
+        }
+        // Bloquear Ctrl+C (copiar)
+        if (e.ctrlKey && (e.key === 'C' || e.key === 'c')) {
+            e.preventDefault();
+            return false;
+        }
+        // Bloquear Ctrl+X (cortar)
+        if (e.ctrlKey && (e.key === 'X' || e.key === 'x')) {
+            e.preventDefault();
+            return false;
+        }
+        // Bloquear Ctrl+V (pegar)
+        if (e.ctrlKey && (e.key === 'V' || e.key === 'v')) {
+            e.preventDefault();
+            return false;
+        }
+        // Bloquear Ctrl+A (seleccionar todo)
+        if (e.ctrlKey && (e.key === 'A' || e.key === 'a')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // 3. Prevenir arrastre de imágenes y elementos
+    window.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    
+    // 4. Deshabilitar selección de texto adicionalmente con JavaScript
+    document.onselectstart = function() { return false; };
+    document.onmousedown = function(e) {
+        // Permitir interacción normal con elementos interactivos si los hubiera
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+            return true;
+        }
+        return true;
+    };
+    
+    // 5. Detectar apertura de consola y mostrar advertencia (opcional)
+    // Detección básica de consola abierta
+    (function() {
+        const devtools = /./;
+        devtools.toString = function() {
+            console.log('%c⚠️ DOCUMENTO PROTEGIDO ⚠️', 'color: red; font-size: 18px; font-weight: bold;');
+            console.log('%cNo está autorizado el uso de herramientas de desarrollo', 'color: orange; font-size: 14px;');
+            return 'protected';
+        };
+        console.log(devtools);
+    })();
+    
+    // 6. Prevenir que se pueda copiar texto desde el contexto del navegador
+    document.body.addEventListener('copy', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    
+    document.body.addEventListener('cut', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    
+    // 7. Deshabilitar tecla de menú (contexto del teclado)
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ContextMenu' || e.keyCode === 93) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // 8. Limpiar consola periódicamente (opcional, para dificultar debugging)
+    // setInterval(function() {
+    //     console.clear();
+    // }, 1000);
+    
+    // 9. Prevenir que se pueda ver el código mediante eventos
+    window.addEventListener('beforeunload', function() {
+        // No hacer nada, solo prevención
+    });
+    
+    // 10. Mensaje en consola de advertencia
+    console.log('%c🚫 DOCUMENTO CONFIDENCIAL - ACCESO NO AUTORIZADO 🚫', 'color: red; font-size: 16px; font-weight: bold; background: black; padding: 4px;');
+    console.log('%cEl uso de herramientas de desarrollo está prohibido', 'color: orange; font-size: 12px;');
+    
+    // 11. Bloquear que se pueda hacer clic derecho en imágenes
+    const allImages = document.querySelectorAll('img');
+    allImages.forEach(img => {
+        img.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        img.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    });
+</script>
 </html>
 
 
