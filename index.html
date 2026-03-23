@@ -146,27 +146,6 @@
 
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby36aYFzeJhltB5gLNFOLsykaFycRoEubO5BZxhkfEukevrdxJB3vXvtVPXobN4V193/exec';
-    
-    // ===== PROTECCIÓN INMEDIATA =====
-document.oncontextmenu = function(e) {
-    e.preventDefault();
-    return false;
-};
-// Deshabilitar teclas F12, Ctrl+U, etc.
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u')) {
-        e.preventDefault();
-        return false;
-    }
-});
-// Anular console
-const noop = () => {};
-console.log = console.info = console.warn = console.error = noop;
-setInterval(() => console.clear(), 2000);
-    let ACTIVE_CODE = null;
-let currentCode = null;
-
-// ==================================
 
 let ACTIVE_CODE = null;
 let currentCode = null;
